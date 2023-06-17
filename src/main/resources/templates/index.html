@@ -1,0 +1,25 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='home')}"/>
+
+<main class="container">
+    <div class="bg-body-tertiary p-5 rounded">
+        <h1>Template from bootstrap examples</h1>
+        <p th:text="${dataFromController}"></p>
+        <p><a href="https://getbootstrap.com/docs/5.3/examples/navbar-static/">L'exemple en question</a></p>
+        <a class="btn btn-lg btn-primary" href="#" role="button">Exemple lien bouton &raquo;</a>
+    </div>
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

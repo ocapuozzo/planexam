@@ -1,0 +1,42 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='etablissement')}"/>
+
+<main class="container">
+  <div class="card">
+    <div class="card-header">
+      <p>Etablissement</p>
+    </div>
+
+    <div class="card-body">
+      <form action="#"  th:action="@{/admin/etab}" th:object="${etablissementDto}"
+            method="post">
+        <input type="hidden" th:field="${etablissementDto.id}">
+        <div class="mb-4">
+          <label for="name" class="form-label">Nom</label>
+          <input type="text" th:field="*{nom}" id="name" placeholder="name" class="form-control">
+          <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="validation-message"></span>
+        </div>
+        <hr>
+
+        <div class="mb-4">
+          <span class="p-1"><a th:href="@{/}">Retour</a></span>
+          <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

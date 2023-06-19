@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+left to right direction
+
+' :Main Admin: as Admin
+:President Examen: as President
+
+package PlanExam {
+(Plannifier la \nrepartition des jurys) as (Repartir)
+(Plannifier les \nconvocations candidats) as (ConvocCandidat)
+(Gérer les établissements) as (GereEtab)
+(Importer etablissements) as (Importer)
+(Gérer sessions d'examens) as (GereSessionExam)
+(Modifier\n mes contraintes de disponibilité) as (Dispo)
+(MAJ \ndonnées personnelles) as (MAJDataPerso)
+}
+(Importer) .> (GereEtab): include
+President --> (Repartir)
+President --> (ConvocCandidat)
+President --> (GereEtab)
+President --> (GereSessionExam)
+(Dispo) <-- Jury
+(MAJDataPerso) <-- Jury
+
+'(Gérer les établissements) <-- Jury
+
+
+' note right of Admin : This is an example.
+
+'note right of (Use)
+'A note can also
+'be on several lines
+'end note
+
+'note "This note is connected\nto several objects." as N2
+'(Repartir) .. N2
+'N2 .. (Use)
+
+@enduml

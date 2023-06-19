@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Etablissement {
+id
+nom
+rne
+code
+ccf
+}
+
+
+class Ville {
+id
+nom
+codePostal
+gps
+}
+
+Etablissement "*" - "1" Ville: "\t\t\t"
+
+hide circle
+
+@enduml

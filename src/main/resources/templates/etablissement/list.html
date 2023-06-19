@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='etablissements')}"/>
+
+<main class="container">
+
+  <h1>Etablissements</h1>
+
+  <a class="btn btn-lg btn-primary" href="#" th:href="@{/admin/etablissement}" role="button">Ajouter un établissement</a>
+
+  <div th:switch="${etablissements}">
+    <h2 th:case="null">Aucun établissement!</h2>
+    <div th:case="*">
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Nom</th>
+          <th>RNE</th>
+          <th>Opérations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="etab : ${etablissements}">
+          <td th:text="${etab.nom}"></td>
+          <td th:text="${etab.rne}"></td>
+          <td><a th:href="@{/admin/etablissement/edit/{id} (id=${etab.id})}">Edit</a>
+            &nbsp;/&nbsp;
+            <a href="#">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

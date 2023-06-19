@@ -75,6 +75,10 @@ public class Etablissement {
     this.ville = ville;
   }
 
+
+ // codes générés par JPA Utilities...
+ // à voir, car la logique du equals n'est pas la même que celle du hash...
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -87,6 +91,9 @@ public class Etablissement {
   public int hashCode() {
     return getClass().hashCode();
   }
+
+ // fin codes générés par JPA Utilities...
+
 
   @Override
   public String toString() {

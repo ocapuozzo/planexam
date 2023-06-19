@@ -22,15 +22,37 @@ public class AdminController {
     this.etablissementService = etablissementService;
   }
 
-  @GetMapping(value = "/etab")
-    public String index(@ModelAttribute EtablissementDto etablissementDto){
+  @GetMapping(value = "/etablissements")
+  public String index(Model model){
+    model.addAttribute("etablissements", etablissementService.getAll());
+    return "etablissement/list";
+  }
+
+
+  @GetMapping(value = "/etablissement")
+    public String pushFormEtab(@ModelAttribute EtablissementDto etablissementDto){
         return "etablissement/form";
     }
 
-    @PostMapping(value = "/etab")
+
+  @GetMapping(value = "/etablissement/edit/{id}")
+  public String pushFormEtab(@PathVariable("id") long id, Model model){
+    EtablissementDto etablissementDto = etablissementService.findEtablissementDtoById(id);
+    model.addAttribute("etablissementDto", etablissementDto);
+    return "etablissement/form";
+  }
+
+
+  @PostMapping(value = "/etablissement")
     public String addUpdateEtab(@Valid @ModelAttribute EtablissementDto etablissementDto, BindingResult bindingResult) {
        logger.info("addUpdateEtab (" + etablissementDto + ")");
        logger.info("hasErrors = " + bindingResult.hasErrors());
-       return "redirect:/";
+
+       if(bindingResult.hasErrors()) {
+         return "etablissement/form";
+       }
+
+       etablissementService.saveEtablissementFromEtablissementDto(etablissementDto);
+       return "redirect:/admin/etablissements";
     }
 }

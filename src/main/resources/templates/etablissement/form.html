@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div th:replace="~{fragments/header :: menu(activeTab='etablissement')}"/>
+<div th:replace="~{fragments/header :: menu(activeTab='etablissements')}"/>
 
 <main class="container">
   <div class="card">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="card-body">
-      <form action="#"  th:action="@{/admin/etab}" th:object="${etablissementDto}"
+      <form action="#"  th:action="@{/admin/etablissement}" th:object="${etablissementDto}"
             method="post">
         <input type="hidden" th:field="${etablissementDto.id}">
         <div class="mb-4">
@@ -26,8 +26,13 @@
         <hr>
 
         <div class="mb-4">
-          <span class="p-1"><a th:href="@{/}">Retour</a></span>
-          <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+          <span class="p-1"><a th:href="@{/admin/etablissements}">Retour</a></span>
+          <span th:if="${etablissementDto.id != null}">
+          <button type="submit" class="btn btn-primary btn-block">Mettre à jour</button>
+          </span>
+          <span th:if="${etablissementDto.id == null}">
+            <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+          </span>
         </div>
       </form>
     </div>

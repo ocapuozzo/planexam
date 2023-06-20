@@ -12,6 +12,7 @@
   <h1>Etablissements</h1>
 
   <a class="btn btn-lg btn-primary" href="#" th:href="@{/admin/etablissement}" role="button">Ajouter un établissement</a>
+  <a class="btn btn-lg btn-primary" href="#" th:href="@{/admin/etablissement/import}" role="button">Importer une liste d'établissements</a>
 
   <div th:switch="${etablissements}">
     <h2 th:case="null">Aucun établissement!</h2>

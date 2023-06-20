@@ -1,0 +1,33 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='etablissements')}"/>
+
+<main class="container">
+  <div class="card">
+    <div class="card-header">
+      <p>Import liste d'établissements en CSV</p>
+    </div>
+
+    <div class="card-body">
+      <form action="#"  th:action="@{/admin/etablissement/import}"
+            enctype="multipart/form-data"
+            method="post">
+        <input type="file" name="file" /><br/><br/>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

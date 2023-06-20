@@ -20,7 +20,7 @@
         <input type="hidden" th:field="${etablissementDto.id}">
         <div class="mb-4">
           <label for="name" class="form-label">Nom</label>
-          <input type="text" th:field="*{nom}" id="name" placeholder="name" class="form-control">
+          <input type="text" th:field="*{nom}" id="name" required placeholder="name" class="form-control">
           <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="validation-message"></span>
         </div>
         <hr>

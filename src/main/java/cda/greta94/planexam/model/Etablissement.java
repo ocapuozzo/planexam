@@ -3,6 +3,8 @@ package cda.greta94.planexam.model;
 import jakarta.persistence.*;
 import org.hibernate.Hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,7 +29,18 @@ public class Etablissement {
   @ManyToOne
   private Ville ville;
 
-  public Long getId() {
+    @OneToMany(mappedBy = "etablissement", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Professeur> professeurs = new ArrayList<>();
+
+    public List<Professeur> getProfesseurs() {
+        return professeurs;
+    }
+
+    public void setProfesseurs(List<Professeur> professeurs) {
+        this.professeurs = professeurs;
+    }
+
+    public Long getId() {
     return id;
   }
 

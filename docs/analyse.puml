@@ -17,7 +17,78 @@ codePostal
 gps
 }
 
-Etablissement "*" - "1" Ville: "\t\t\t"
+class Professeur{
+id
+nom
+prenom
+email
++estDispo()
+}
+
+class Specialite{
+id
+libelle
+}
+
+
+class Epreuve{
+id
+maxJuryParJour
+nbCandidats
+}
+
+class Periode{
+id
+dateDebut
+dateFin
+}
+
+class Passage{
+id
+heureDebut
+heureFin
+}
+
+
+class JourEpreuve{
+id
+dateJour
+-estRempli()
+-getProfProcheEtDispo()
+}
+
+class Indisponibilite{
+id
+dateIndisponibilite
+}
+
+Etablissement "*" -- "1" Ville: "\t\t\t"
+Professeur "*" --"1" Etablissement
+Professeur "*" -- "1" Ville
+Professeur "*" - "1" Specialite
+Etablissement "1" -- "*" Epreuve
+Epreuve "*"--"1" Periode
+Professeur "*"--"*" Periode
+Professeur "2"--"*" Passage
+Passage "5"--"1" JourEpreuve
+Indisponibilite "*"--"*" Professeur
+Indisponibilite "*"-"1" Periode
+Epreuve "1" --"*" JourEpreuve
+
+
+note right of Passage::heureDebut
+    A voir si on garde les heures
+    ou juste un ordre
+end note
+
+note left of Epreuve
+    Transformation en
+    classe associative ?
+end note
+
+
+
+
 
 hide circle
 

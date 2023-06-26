@@ -3,6 +3,7 @@ package cda.greta94.planexam.model;
 import jakarta.persistence.*;
 import org.hibernate.Hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,8 +20,19 @@ public class Ville {
    @OneToMany(mappedBy = "ville")
   private List<Etablissement> etablissements;
 
+    @OneToMany(mappedBy = "ville", orphanRemoval = true)
+    private List<Professeur> professeurs = new ArrayList<>();
 
-  public Long getId() {
+    public List<Professeur> getProfesseurs() {
+        return professeurs;
+    }
+
+    public void setProfesseurs(List<Professeur> professeurs) {
+        this.professeurs = professeurs;
+    }
+
+
+    public Long getId() {
     return id;
   }
 

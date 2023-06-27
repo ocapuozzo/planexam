@@ -9,4 +9,6 @@ public interface EtablissementRepository extends JpaRepository<Etablissement, Lo
 
   // DSL Domain Specific Language
   Optional<Etablissement> findByRne(String rne);
+
+  Optional<Etablissement> findByNom(String nomVille);
 }

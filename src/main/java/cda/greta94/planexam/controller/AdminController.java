@@ -2,6 +2,8 @@ package cda.greta94.planexam.controller;
 
 import cda.greta94.planexam.dto.EtablissementDto;
 import cda.greta94.planexam.service.EtablissementService;
+import cda.greta94.planexam.service.VilleService;
+import ch.qos.logback.core.spi.AbstractComponentTracker;
 import jakarta.validation.Valid;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -23,9 +25,11 @@ public class AdminController {
   private Logger logger = LoggerFactory.getLogger(AdminController.class);
 
   private EtablissementService etablissementService;
+  private VilleService villeService;
 
-  public AdminController(EtablissementService etablissementService) {
+  public AdminController(EtablissementService etablissementService, VilleService villeService) {
     this.etablissementService = etablissementService;
+    this.villeService = villeService;
   }
 
   @GetMapping(value = "/etablissements")
@@ -73,32 +77,10 @@ public class AdminController {
       redirAttrs.addFlashAttribute("errorMessage", "Please select a file to upload");
       return "redirect:/admin/etablissement/import";
     }
-    // traitement du fichier CSV
-
     try {
-      Reader in = new InputStreamReader(file.getInputStream());
-      // "id","Nom","Ville","RNE","Codification","CCF","CCF 2016"
-      Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader("id", "Nom", "Ville", "RNE", "Codification", "CCF", "CCF 2016").parse(in);
-//      Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
-//      Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader().withSkipHeaderRecord().parse();
-      int nbLigne = 0;
-      for (CSVRecord record : records) {
-        nbLigne++;
-        // saute la première ligne d'entête si elle existe
-        if (nbLigne == 1 && record.get("Ville").equals("Ville") && record.get("Nom").equals("Nom")) continue;
-
-        // une idée pour gérer la ville ?
-
-
-        EtablissementDto etabDto = new EtablissementDto(null, record.get("Nom"), record.get("RNE"), record.get("Codification"), record.get("CCF"), null);
-        // TODO appliquer la validation par injection du Validator
-        logger.info("Établissement à importer : " + etabDto);
-
-        etablissementService.saveEtablissementFromEtablissementDto(etabDto);
-
-      }
+      etablissementService.importEtablissementFromCSVFile(file);
     } catch (Exception e) {
-      redirAttrs.addFlashAttribute("errorMessage",  /*e.getMessage()*/ "Un problème est intervenu, est-ce le bon fichier ?");
+      redirAttrs.addFlashAttribute("errorMessage",  e.getMessage() /*"Un problème est intervenu, est-ce le bon fichier ?"*/);
       return "redirect:/admin/etablissement/import";
     }
     // ok

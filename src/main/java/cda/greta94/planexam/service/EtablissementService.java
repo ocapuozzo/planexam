@@ -19,13 +19,20 @@ public class EtablissementService {
   }
 
   public void saveEtablissementFromEtablissementDto(EtablissementDto etablissementDto) {
-    Etablissement etablissement;
+    Etablissement etablissement = null;
     if ((etablissementDto.getId() != null)) {
       etablissement = etablissementRepository.findById(etablissementDto.getId()).orElseThrow(NotFoundEntityException::new);
     } else {
-      etablissement = new Etablissement();
+      if ((etablissementDto.getRne() != null)) {
+        etablissement = etablissementRepository.findByRne(etablissementDto.getRne()).orElse(null);
+      }
+      if (etablissement == null) etablissement = new Etablissement();
     }
     etablissement.setNom(etablissementDto.getNom());
+    etablissement.setCcf(etablissementDto.getCcf());
+    etablissement.setRne(etablissementDto.getRne());
+    etablissement.setCode(etablissementDto.getCode());
+
     etablissementRepository.save(etablissement);
   }
 

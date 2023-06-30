@@ -5,7 +5,7 @@ left to right direction
 ' :Main Admin: as Admin
 :President Examen: as President
 
-package PlanExam {
+package PlanExamE5 {
 (Plannifier la \nrepartition des jurys) as (Repartir)
 (Plannifier les \nconvocations candidats) as (ConvocCandidat)
 (Gérer les établissements) as (GereEtab)

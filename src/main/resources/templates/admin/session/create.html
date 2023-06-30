@@ -1,0 +1,36 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='home')}"/>
+
+<main class="container">
+    <h1>Ajout d'une session E5</h1>
+    <form th:object="${sessionE5Dto}" th:action="@{/admin/session}" method="post">
+        <div class="row">
+            <label for="nom">Nom</label>
+            <input id="nom" th:field="${sessionE5Dto.libelle}" type="text">
+        </div>
+        <div class="row">
+            <label for="dateDebut">Début</label>
+            <input id="dateDebut" th:field="*{dateDebut}" type="date">
+        </div>
+        <div class="row">
+            <label for="dateFin">Fin</label>
+            <input id="dateFin" th:field="*{dateFin}" type="date" >
+        </div>
+        <button>Envoyer</button>
+    </form>
+
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

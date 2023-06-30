@@ -42,6 +42,9 @@
           <a class="nav-link" href="#" th:href="@{/admin/etablissements}" th:classappend="${activeTab == 'etablissements' ? 'active' : null}" >Etablissements</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link"  th:href="@{/admin/session}" th:classappend="${activeTab == 'sessions' ? 'active' : null}" >Sessions E5</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
@@ -52,7 +55,7 @@
     </div>
   </div>
 </nav>
-  <div>
+  <div class="container">
     <p th:if="${errorMessage != null}" th:text="${errorMessage}" class="alert alert-danger"></p>
     <p th:if="${successMessage != null}" th:text="${successMessage}" class="alert alert-success"></p>
   </div>

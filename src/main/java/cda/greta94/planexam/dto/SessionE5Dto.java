@@ -1,11 +1,17 @@
 package cda.greta94.planexam.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.sql.Date;
 
 public class SessionE5Dto {
     private Long id;
+    @NotBlank(message = "Nom requis")
     private String libelle;
+    @NotBlank(message = "Date de début requis")
     private Date dateDebut;
+    @NotBlank(message = "Date de fin requis")
     private Date dateFin;
 
     public Long getId() {

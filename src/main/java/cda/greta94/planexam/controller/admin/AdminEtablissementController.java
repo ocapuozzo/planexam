@@ -15,14 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequestMapping("/admin")
 @Controller
-public class AdminController {
+public class AdminEtablissementController {
 
-  private Logger logger = LoggerFactory.getLogger(AdminController.class);
+  private Logger logger = LoggerFactory.getLogger(AdminEtablissementController.class);
 
   private EtablissementService etablissementService;
   private VilleService villeService;
 
-  public AdminController(EtablissementService etablissementService, VilleService villeService) {
+  public AdminEtablissementController(EtablissementService etablissementService, VilleService villeService) {
     this.etablissementService = etablissementService;
     this.villeService = villeService;
   }

@@ -4,8 +4,13 @@ import cda.greta94.planexam.dao.JourPassageRepository;
 import cda.greta94.planexam.dao.SessionE5Repository;
 import cda.greta94.planexam.dto.SessionE5Dto;
 import cda.greta94.planexam.model.SessionE5;
+import nonapi.io.github.classgraph.json.JSONUtils;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -44,4 +49,5 @@ public class SessionService {
 
        return  sessionRepository.save(sessionE5);
     }
+
 }

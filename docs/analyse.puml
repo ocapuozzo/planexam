@@ -2,89 +2,80 @@
 'https://plantuml.com/class-diagram
 
 class Etablissement {
-id
-nom
-rne
-code
-ccf
+-id
+-nom
+-rne
+-code
+-ponctuel
 }
 
 
 class Ville {
-id
-nom
-codePostal
-gps
+-id
+-nom
+-codePostal
+-gps
 }
 
 class Professeur{
-id
-nom
-prenom
-email
+-id
+-nom
+-prenom
+-email
 +estDispo()
 }
 
 class Specialite{
-id
-libelle
+-id
+-libelle
 }
 
 
-class Epreuve{
-id
-maxJuryParJour
-nbCandidats
+class EEA{
+-id
+-maxJuryParJour
+-nbCandidats
 }
 
-class Periode{
-id
-dateDebut
-dateFin
+class SessionE5{
+-id
+-libelle
+-dateDebut
+-dateFin
 }
 
-class Passage{
-id
-heureDebut
-heureFin
+class Jury{
+-id
+-num
++getProfProcheEtDispo()
 }
 
 
-class JourEpreuve{
-id
-dateJour
--estRempli()
--getProfProcheEtDispo()
+class JourPassage{
+-id
+-dateJour
+
 }
 
-class Indisponibilite{
-id
-dateIndisponibilite
-}
-
-Etablissement "*" -- "1" Ville: "\t\t\t"
-Professeur "*" --"1" Etablissement
 Professeur "*" -- "1" Ville
-Professeur "*" - "1" Specialite
-Etablissement "1" -- "*" Epreuve
-Epreuve "*"--"1" Periode
-Professeur "*"--"*" Periode
-Professeur "2"--"*" Passage
-Passage "5"--"1" JourEpreuve
-Indisponibilite "*"--"*" Professeur
-Indisponibilite "*"-"1" Periode
-Epreuve "1" --"*" JourEpreuve
+Professeur "*" -- "1" Specialite
+Professeur "2" -- "*" Jury
+Professeur "*" -- "1" Etablissement
+Professeur "*" -- "*" SessionE5
+
+Professeur "*" -- "*" JourPassage
+
+JourPassage "1" -- "*" Jury
+JourPassage "*" -- "*" Etablissement
+JourPassage "*" -- "1" SessionE5
+
+EEA "1" -- "*" Jury
+EEA "*" -- "1" SessionE5
+EEA "*" -- "1" Etablissement
+
+Ville "1" -- "*" Etablissement
 
 
-note right of Passage::heureDebut
-    A voir si on garde les heures
-    ou juste un ordre
-end note
-
-note left of Epreuve
-    Transformation en
-    classe associative ?
-end note
 
 
 

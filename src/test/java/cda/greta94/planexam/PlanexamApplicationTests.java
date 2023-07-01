@@ -1,6 +1,5 @@
 package cda.greta94.planexam;
 
-import cda.greta94.planexam.controller.AdminController;
 import cda.greta94.planexam.dto.EtablissementDto;
 import cda.greta94.planexam.model.Etablissement;
 import cda.greta94.planexam.service.EtablissementService;

@@ -1,0 +1,20 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu(activeTab='sessions')}"/>
+
+<main class="container">
+<!--TODO ?-->
+</main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>

@@ -1,6 +1,5 @@
 package cda.greta94.planexam.service;
 
-import cda.greta94.planexam.controller.AdminController;
 import cda.greta94.planexam.dao.EtablissementRepository;
 import cda.greta94.planexam.dto.EtablissementDto;
 import cda.greta94.planexam.exception.NotFoundEntityException;

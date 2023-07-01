@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: menu(activeTab='sessions')}"/>
+
+    <main class="container">
+
+        <form class="col-lg-6 mx-auto" th:object="${sessionE5Dto}" th:action="@{/admin/session}" method="post">
+            <h1>Ouvrir une session E5</h1>
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label" for="nom">Nom</label>
+                    <input class="form-control" id="nom" th:field="${sessionE5Dto.libelle}" type="text">
+                    <span th:if="${#fields.hasErrors('libelle')}" th:errors="*{libelle}"
+                          class="validation-message"></span>
+                </div>
+            </div>
+            <div class="row  mb-2">
+                <div class="col">
+                    <label class="form-label" for="dateDebut">Début</label>
+                    <input class="form-control" id="dateDebut" th:field="*{dateDebut}" type="date">
+                    <span th:if="${#fields.hasErrors('dateDebut')}" th:errors="*{dateDebut}"
+                          class="validation-message"></span>
+                </div>
+
+                <div class="col">
+                    <label class="form-label" for="dateFin">Fin</label>
+                    <input class="form-control" id="dateFin" th:field="*{dateFin}" type="date">
+                    <span th:if="${#fields.hasErrors('dateFin')}" th:errors="*{dateFin}"
+                          class="validation-message"></span>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3">Envoyer</button>
+        </form>
+    </main>
+
+<!-- /.container -->
+
+<div th:replace="~{fragments/footer.html :: footer}"/>
+
+</body>
+</html>
